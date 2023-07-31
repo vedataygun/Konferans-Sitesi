@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Admin Giriş";
+    Layout = "_Layout";
+}
+
+@section css{
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="~/css/admin/admin-login.css" rel="stylesheet">
+}
+
+    <div class="header">
+        <a href="/"><i class="fa-solid fa-chevron-left"></i></a>
+    </div>
+
+    <div class="body">
+        <h1>Admin Giriş</h1>
+        <div class="container">
+            <form action="/admin/login" method="post">
+                <div class="input-group">
+                    <input type="text" name="username" placeholder="Kullanıcı Adı">
+                    <input type="password" name="password" placeholder="Sifre">
+                    <button type="submit">
+                        Admin Giriş
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <span>Design by Vedat AYGÜN</span>
+    </footer>

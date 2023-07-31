@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    color: #f0f2f5;
+    
+}
+
+.container {
+    height: 210mm;
+    width: 297mm;
+    display: flex;
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: #000;
+}
+
+
+    .container .sec-1 {
+        display:block;
+        min-width: 80px;
+        width: 80px;
+        max-width: 80px;
+        background: #FF455A;
+        height: 210mm;
+    }
+
+    .container .sec-2 {
+        width: 297mm;
+        height: 210mm;
+        padding: 35px 40px;
+    }
+
+
+    
+    .sec-2 .col-1 {
+        font-weight: 600;
+        font-size: 30px;
+        display:block;
+        width:100%;
+        padding-bottom: 5px;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+.container .sec-2 .col-2 {
+    font-weight: 700;
+    font-size: 70px;
+    display: block;
+    width: 70%;
+    margin:100px 0;
+}
+
+
+    .container .sec-2 .row .col-3 {
+        max-width:30%;
+        font-size: 20px;
+        font-weight: 700;
+        padding: 10px;
+        display: block;
+        margin-bottom:10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+
+    .container .sec-2 .row .col-4 {
+        max-width:50%;
+        font-size: 20px;
+        font-weight: 700;
+        padding: 10px;
+        display: block;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+.container .sec-2 .date {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top:150px;
+    text-align:right;
+    display:block;
+    max-width:85%;
+    padding:0 30px;
+}
+
+
+
+@page{
+    size:A4 landscape;
+}

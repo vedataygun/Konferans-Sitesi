@@ -1,0 +1,41 @@
+﻿@using Conference_Website.Models;
+@{
+    Layout = "_Layout";
+}
+
+@section css {
+    <link href="~/css/verfication.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+}
+
+ <div class="header">
+        <div class="navbar">
+            <a href="/" class="logo">@SiteSettings.LogoName</a>
+            <nav>
+                 <ul>
+                <li><a href="/#header">Anasayfa</a></li>
+                    <li><a href="/#konusmacilar">Konuşmacılar</a></li>
+                    <li><a href="/#gundem">Gündem</a></li>
+                    <li><a href="/#mekan">Mekan</a></li>
+                    <li><a href="/#adres">Adres</a></li>
+                </ul>
+            </nav>
+
+            <button class="hbgr-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+    <div class="body">
+        <section class="sec-1">
+            <h1>Kayıt Başarılı</h1>
+            <p>Başarıyla kayıt oldunuz , konferans sonrasında sertifikanız epostanıza gönderilecektir</p>
+        </section>
+
+    </div>
+    <footer>
+        <span>Design by Vedat AYGÜN</span>
+    </footer>
+

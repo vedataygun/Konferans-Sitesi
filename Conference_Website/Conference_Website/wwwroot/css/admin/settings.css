@@ -1,0 +1,122 @@
+﻿
+main input, button, textarea {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 20px;
+}
+
+main button {
+    cursor: pointer;
+    background: none;
+}
+
+
+
+main form{
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+    width:100%;
+}
+
+main .sec-1{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 20px;
+    background-color:#222222;
+    border-radius:10px;
+}
+
+
+
+main .sec-1 .col-1{
+    display:flex;
+    gap:10px;
+    flex-direction:column;
+}
+
+    main .sec-1 .col-1 span{
+        font-weight:600;
+        font-size:16px;
+        color:#fff;
+    }
+    main .sec-1 .col-1 p{
+        color:#bababa;
+        font-size:13px;
+
+    }
+
+
+    main .sec-1 input[type=text] {
+        height: 56px;
+        width: 350px;
+        background: #121418;
+        color:#bababa;
+        font-size:14px;
+    }
+
+main form button {
+    width: 160px;
+    display: flex;
+    font-size: 14px;
+    background: linear-gradient(to right,#01C29A, #85C883, #E2CE72);
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+    gap: 25px;
+}
+
+
+main form .checkbox {
+    width: 80px;
+    height: 34px;
+    border-radius: 25px;
+    background: #121418;
+    position:relative;
+    cursor:pointer;
+    box-shadow:0 0 3px 1px rgba(0,0,0,0.25);
+}
+
+    main form .checkbox input[type=checkbox]{
+        -webkit-appearance:none;
+    }
+
+
+
+    main form .checkbox span {
+        display: inline-block;
+        width: 29px;
+        height: 29px;
+        border-radius: 50%;
+        background-color: #D9D9D9;
+        position:absolute;
+        top:50%;
+        transform:translateY(-50%);
+        left:4px;
+        transition:all 0.4s ease-in-out;
+    }
+
+    main form .checkbox input[type=checkbox]:checked ~ span {
+        left: calc(100% - 33px);
+        background-color: #00E0F4;
+    }
+
+    @media only screen and (max-width:1023px) {
+        main form button{
+        width:100%;
+    }
+
+    main .sec-1 input[type=text]{
+        width:100%;
+    }
+
+    main .sec-1{
+        padding:20px;
+        flex-direction:column;
+        gap:25px;
+        align-items:flex-start;
+    }
+
+}

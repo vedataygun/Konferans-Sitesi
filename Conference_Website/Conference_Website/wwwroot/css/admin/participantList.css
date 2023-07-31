@@ -1,0 +1,128 @@
+﻿main .container{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+    padding:25px;
+    border-radius:10px;
+    background:#222222;
+}
+
+main button , main input{
+    outline:none;
+    border:none;
+    
+}
+
+    main input[type=button]{
+        cursor:pointer;
+    }
+
+    main .container .sec-1 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+        main .container .sec-1 .col-1 {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        main .container .sec-1 .col-1 span:first-child{
+            font-size:17px;
+            font-weight:600;
+            color:#fff;
+        }
+
+            main .container .sec-1 .col-1 span:last-child {
+                color: #B5B5C3;
+                font-size:13px;
+                font-weight:500;
+            }
+
+
+        main .container .sec-1 .col-2 {
+        
+            display:flex;
+            gap:15px;
+            
+        }
+
+            main .container .sec-1 .col-2 input {
+                padding: 9px 14px;
+                background: #3699FF;
+                color:#fff;
+                font-size:13px;
+                border-radius:6px;
+            }
+
+
+
+main .container table {
+    text-align: left;
+    border-spacing: 0px;
+    width: 100%;
+    border-collapse: separate;
+}
+
+    main .container table thead tr {
+
+
+    }
+
+    main .container table th {
+        padding: 12px 15px;
+        background-color: #383838;
+        color: #B5B5C3;
+        font-size:12px;
+        font-weight:600;
+    }
+    main .container table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #01C29A;
+        color: #BABABA;
+        font-size:14px;
+    }
+
+
+        main .container table th:first-child {
+            border-top-left-radius: 9px;
+            border-bottom-left-radius: 9px;
+        }
+
+        main .container table th:last-child {
+            border-top-right-radius: 9px;
+            border-bottom-right-radius: 9px;
+        }
+
+    main .container table tbody tr {
+    }
+
+    @media screen and (max-width:1023px)
+    {
+        main{
+            padding-left:0;
+            padding-right:0;
+            overflow-x:auto;
+            flex-direction:initial;
+        }
+
+        main .container .sec-1{
+            flex-direction:column;
+            gap:20px;
+        }
+
+        main .container {
+            overflow:hidden;
+           
+        }
+            main .container .sec-2 {
+                overflow: auto;
+                width:100%;
+            }
+            main .container table {
+                min-width: 600px;
+            }
+    }

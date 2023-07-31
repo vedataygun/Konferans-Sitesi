@@ -1,0 +1,48 @@
+﻿@using Conference_Website.Models;
+
+@{
+    ViewData["Title"] = "Admin Site Ayarları Sayfası";
+    ViewBag.Navigation = "Site Ayarları";
+    Layout = "_Admin-Layout";
+}
+
+
+@section css{
+    <link href="~/css/admin/settings.css" rel="stylesheet" />
+}
+
+<form action="/admin/Settings" method="post">
+
+    <div class="sec-1">
+        <div class="col-1">
+            <span>Site Adı</span>
+            <p>Buraya kaydettiğiniz isim anasayfada görünecektir.</p>
+        </div>
+        <input type="text" name="LogoName" value="@SiteSettings.LogoName" />
+    </div>
+
+    <div class="sec-1">
+        <div class="col-1">
+            <span>Telif Hakkı</span>
+            <p>Buraya kaydettiğiniz isim anasayfada görünecektir.</p>
+        </div>
+        <input type="text" name="Copyright" value="@SiteSettings.Copyright" />
+    </div>
+
+     <div class="sec-1">
+        <div class="col-1">
+            <span>Email Doğrulama</span>
+            <p>Bu özelliği aktif ettiğiniz durumda kayıt olan kullanıcılardan email doğrulaması istenecektir.</p>
+        </div>
+        <label class="checkbox" >
+            @Html.CheckBoxFor(m => SiteSettings.EmailChecked)
+            <span></span>
+        </label>
+    </div>
+
+    <button type="submit">
+        Güncelle
+        <i class="fa-solid fa-arrow-right"></i>
+    </button>
+
+</form>

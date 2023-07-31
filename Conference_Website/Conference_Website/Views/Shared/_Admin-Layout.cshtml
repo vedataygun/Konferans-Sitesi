@@ -1,0 +1,106 @@
+﻿@using Conference_Website.Extension;
+@using Conference_Website.Extensions;
+@using Conference_Website.Models;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="~/css/admin/admin-layout.css" rel="stylesheet" />
+    <link href="~/css/alert.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    @RenderSection("css",false)
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+
+    @if (TempData.Get<AlertBox>("alert") != null)
+    {
+        <div class="alrtbox alrtbox-@(TempData.Get<AlertBox>("alert").TypeString.ToLower())" data-theme="dark">
+            <div class="alr-container">
+                @switch (TempData.Get<AlertBox>("alert").Type)
+                {
+                    case AlertType.Info:
+                        <i class="fa-solid fa-circle-info"></i>
+                        break;
+                    case AlertType.Warning:
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        break;
+                    case AlertType.Success:
+                        <i class="fa-solid fa-circle-check"></i>
+                        break;
+                    case AlertType.Danger:
+                        <i class="fa-sharp fa-solid fa-circle-xmark"></i>
+                        break;
+                    default:
+                        break;
+
+                }
+                <div class="alrt-msg">
+                    <span>@(TempData.Get<AlertBox>("alert").Header)</span>
+                    <p>@(TempData.Get<AlertBox>("alert").Message)</p>
+                </div>
+            </div>
+            <i class="fa-solid fa-xmark alrtbox-close-btn"></i>
+        </div>
+    }
+
+    <div class="header">
+
+        <div id="hbgr-menu" class="sec-1">
+            <button class="hbgr-menu crs-pointer">
+                <div class="dshboard-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <span class="dshboard-txt">Dashboard</span>
+            </button>
+        </div>
+
+        <div class="sec-2">
+            <h4>@ViewBag.Navigation</h4>
+        </div>
+
+        <div class="sec-3 crs-pointer">
+           <a href="/">
+                <i class="fa-solid fa-house-chimney"></i>
+           </a> 
+        </div>
+    </div>
+
+    <div class="body">
+        <div class="aside">
+            <div class="nav-open">
+            </div>
+            <ul>
+                <a href="/admin/generalInformation"><li>Genel Bilgiler</li></a>
+                <a href="/admin/passwordReset"><li>Şifre Değiştir</li></a>
+                <a href="/admin/settings"><li>Site Ayarları</li></a>
+                <a href="/admin/participantList"><li>Katılımcılar</li></a>
+                <a href="/admin/Logout"><li>Çıkış Yap</li></a>
+            </ul>
+        </div>
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+            integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous">
+    </script>
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwh2B7zmy_PxeUpzdO8P5OnKDh9I7Qk8U&callback=Admin_initMap">
+    </script>
+    <script src="~/js/alertBox.js"></script>
+    <script src="~/js/admin-layout.js"></script>
+    @RenderSection("javascript",false)
+
+
+</body>
+</html>

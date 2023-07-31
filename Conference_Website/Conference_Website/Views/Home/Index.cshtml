@@ -1,0 +1,230 @@
+﻿@using Conference_Website.Models;
+@{
+    Layout = "_Layout";
+    var RemainingTime = (Detail.StartDate - DateTime.Now);
+    ViewBag.Title = Detail.ConferenceName;
+}
+
+@section css{
+    <link href="~/css/index.css" rel="stylesheet" />
+    <link href="~/css/slider.css" rel="stylesheet" />
+}
+
+<div class="header">
+    <div class="navbar">
+        <a href="/" class="logo">@SiteSettings.LogoName</a>
+        <nav>
+            <ul>
+                <li><a href="#header">Anasayfa</a></li>
+                <li><a href="#konusmacilar">Konuşmacılar</a></li>
+                <li><a href="#gundem">Gündem</a></li>
+                <li><a href="#mekan">Mekan</a></li>
+                <li><a href="#adres">Adres</a></li>
+                <li class="dsp-none"><a href="/basvuru">Katıl</a></li>
+            </ul>
+        </nav>
+        <a class="btn-katil" href="/basvuru">
+            Hemen Katıl
+        </a>
+        <button class="hbgr-menu" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+
+    <a name="header"></a>
+
+    <div class="body">
+        <div class="dsp-flex gap-30 flx-column">
+            <a class="btn-katil m-active" href="/basvuru">
+                Hemen Katıl
+            </a>
+            <h1>@Detail.ConferenceName</h1>
+            <div class="footer m-active">
+                <div>
+                    <span>@Detail.StartDate.ToString("MMMM") @Detail.StartDate.Date.Day </span>
+                </div>
+                <div>
+                    <span>@Detail.City</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <h3>Contacts Us</h3>
+            <div class="date-container">
+                <div class="date">
+                    <span>@RemainingTime.Days</span>
+                    <span>Gün</span>
+                </div>
+                <div class="date">
+                    <span>@RemainingTime.Hours</span>
+                    <span>Saat</span>
+                </div>
+                <div class="date">
+                    <span>@RemainingTime.Minutes</span>
+                    <span>Dakika</span>
+                </div>
+                <div class="date">
+                    <span>@RemainingTime.Seconds</span>
+                    <span>Saniye</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <div>
+            <span>@Detail.StartDate.ToString("MMMM")  @Detail.StartDate.Date.Day</span>
+        </div>
+        <div>
+            <span>Kütahya</span>
+        </div>
+        <a href="/basvuru">
+            Hemen Katıl
+        </a>
+    </div>
+
+</div>
+
+
+<main>
+    <section class="sec-1">
+        <h4>Konuşmacılar</h4>
+
+        <div class="container">
+            <a name="konusmacilar"></a>
+
+            @if (Detail.Speakers.Count > 0)
+            {
+                for (int i = 0; i < Detail.Speakers.Count; i++)
+                {
+                    <div class="card @(i%2==1?"rw-reverse":"")">
+                        <div class="card-header">
+                            <div class="job">
+                                <span>@(i + 1) </span>
+                                <span></span>
+                                <span>@Detail.Speakers[i].Career</span>
+                            </div>
+                            <img src="~/img/@Detail.Speakers[i].Image" alt="">
+                        </div>
+                        <div class="card-body">
+                            <div>
+                                <span>@Detail.Speakers[i].NameAndSurname</span>
+                                <span>Event Organizer</span>
+                            </div>
+
+                            <p>
+                                @Detail.Speakers[i].Description
+                            </p>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </section>
+
+    <section class="sec-2">
+        <a name="gundem"></a>
+
+        <div>
+            <h4>Program </h4>
+            <h4>ve Gündem</h4>
+        </div>
+
+        <div class="container">
+            @if (Detail.Agenda.Count > 0)
+            {
+                var agendaList = Detail.Agenda.OrderBy(x => x.StartTime).ToList();
+
+                for (int i = 0; i < Detail.Agenda.Count; )
+                {
+                    var item = agendaList[i];
+                    <div class="item @(i==0?"first":"")">
+                        <span>@item.StartTime@(!string.IsNullOrEmpty(item.EndTime) && item.EndTime != item.StartTime ? $" - {@item.EndTime}" : "")</span>
+                        <button>@(++i)</button>
+                        <span>@item.Description</span>
+                    </div>
+                }
+            }
+
+        </div>
+    </section>
+    <a name="mekan"></a>
+
+    <section class="sec-3">
+
+           @if (Detail.ImageList.Count > 0)
+            {
+                 <div class="jstify-center slider" style="">
+                    @for (int i = 0; i < Detail.ImageList.Count; i++)
+                    {
+                        <div class="image-container @(i==0?"featured":"")">
+                            <img src="~/img/@Detail.ImageList[i]" alt="">
+                        </div>
+                    }
+                </div>
+            }
+
+        <h4>Mekan</h4>
+
+    </section>
+
+    <section class="sec-4">
+        <input type="hidden" id="lat" value="@Detail.Latitude" />
+        <input type="hidden" id="long" value="@Detail.Longitude" />
+        <a name="adres"></a>
+
+        <div id="map"></div>
+        <div class="location">
+            <span>Location</span>
+            <p>@Detail.Location</p>
+        </div>
+    </section>
+</main>
+<footer>
+    <span>@SiteSettings.LogoName</span>
+    <ul>
+        <li><a href="#header">Anasayfa</a></li>
+        <li><a href="#konusmaciler">Konuşmacılar</a></li>
+        <li><a href="#gundem">Gündem</a></li>
+        <li><a href="#mekan">Mekan</a></li>
+        <li><a href="#adres">Adres</a></li>
+    </ul>
+
+
+    <p>@SiteSettings.Copyright</p>
+</footer>
+
+@section javascript{
+    <script src="~/js/slider.js"></script>
+    <script src="~/js/map.js"></script>
+    <script>
+
+            if (window.screen.width < 1023) {
+        $("main .sec-3 .container img ").attr("width", "").attr("height", "");
+
+        } 
+        document.getElementById("mobile-menu").onclick =function() {
+          let scrollHeight =  document.body.scrollHeight;
+
+            let i =1;
+          let setInervel=  setInterval(function(){
+                window.scrollTo(window.scrollY , i );
+                i+=15;
+                if (i >= scrollHeight)
+                       clearInterval(setInervel);
+          },40);
+        
+
+        }
+
+
+        initMap(@Detail.Latitude,@Detail.Longitude,"map");
+
+      
+    </script>
+      }

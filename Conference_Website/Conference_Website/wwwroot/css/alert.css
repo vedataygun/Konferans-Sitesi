@@ -1,0 +1,128 @@
+.alrtbox {
+    width: 500px;
+    display: inline-flex;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: #0F0D1E !important;
+    align-items: flex-start;
+    gap: 50px;
+    position: absolute;
+    right: -110%;
+    bottom: 70px;
+    z-index:1000;
+    justify-content: space-between;
+    transition: right 1s ease-out;
+}
+
+
+    .alrtbox.active {
+        transition: right 1.2s ease-out;
+        right: 20px !important;
+    } 
+
+.alrtbox[data-theme="light"]{
+    background-color: #f0f2f5 !important;
+}
+
+    .alrtbox .alr-container {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+        z-index: 1000;
+    }
+
+.alrtbox i:nth-child(1){
+    font-size: 21px;
+    position: relative;
+}
+
+/* .alrtbox i:nth-child(1)::before{
+    background-color: #fff;
+    border-radius: 50%;
+} */
+
+.alrtbox i:nth-child(2){
+    color: #676480;
+    font-size: 17px;
+    cursor: pointer;
+
+}
+
+.alrtbox[data-theme="light"] i:nth-child(2){
+    color: #bababa !important;
+}
+
+.alrtbox .alrt-msg span {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.alrtbox .alrt-msg  p{
+    color: #8D89A9;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.alrtbox[data-theme="light"] .alrt-msg p{
+    color: #767676 !important;
+}
+
+
+@media only screen and (max-width:750px) {
+    .alrtbox {
+        width: 90% !important;
+    }
+}
+
+
+
+
+/*-----  different alert boxes   --------*/
+
+
+/* Info Box */
+
+.alrtbox.alrtbox-info .alrt-msg span {
+    color: #867DF3;
+}
+
+.alrtbox.alrtbox-info i:nth-child(1){
+    color: #867DF3;
+}
+
+
+/* Success Box */
+
+.alrtbox.alrtbox-success .alrt-msg span {
+    color: #00A28E;
+}
+
+.alrtbox.alrtbox-success i:nth-child(1){
+    color: #00A28E;
+}
+
+
+/* Danger Box */
+
+.alrtbox.alrtbox-danger .alrt-msg span {
+    color: #FF5631;
+}
+
+.alrtbox.alrtbox-danger i:nth-child(1){
+    color: #FF5631;
+}
+
+
+/* Warning Box */
+
+.alrtbox.alrtbox-warning .alrt-msg span {
+    color: #ED6F00;
+}
+
+.alrtbox.alrtbox-warning i:nth-child(1){
+    color: #ED6F00;
+}
+
+
+

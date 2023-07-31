@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+a{
+    color:#fff;
+    text-decoration: none;
+}
+
+body{
+    background-color: #121418;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 70px;
+    overflow:hidden;
+
+}
+body, html {
+    overflow-x: hidden;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+ .header .fa-chevron-left{
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+.hbgr-menu{
+    display: none;
+    gap: 9px;
+    width: 22px;
+    align-items: end;
+    outline: none;
+    flex-direction: column;
+    border: none;
+    background-color: transparent;
+}
+
+.hbgr-menu span{
+    width: 100%;
+    background-color: #bbbbbb;
+    display: inline-block;
+    height: 1px;
+}
+
+.hbgr-menu span:nth-child(2){
+    width: 50%;
+
+}
+
+
+
+.body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 80px;
+    align-items: center;
+    height: auto;
+}
+
+.body h1{
+    font-weight: bold;
+    font-size: 35px;color: #fff;
+}
+
+.body .container{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.body .container input {
+    width: 400px;
+    height: 64px;
+    background-color: #222222;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #f0f2f5;
+    padding: 0 20px;
+}
+.body .container button{
+    width: 400px;
+    height: 64px;
+    background:linear-gradient(to right ,#01C29A , #85C883 , #E2CE72);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 20px;
+    display: flex;
+    font-size: 15px;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.body .container .input-group{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.body .container .input-group i {
+    font-size: 25px;
+}
+
+footer span{
+    font-size: 14px;
+    color: #BABABA;
+}
+
+
+@media only screen and (max-width:1023px) {
+
+    body{
+        padding: 20px 40px;
+    }
+ 
+    
+    .logo{
+        color: #D5DCDF !important;
+
+    }
+
+    .hbgr-menu{
+        display: flex;
+    }
+
+    .header .navbar nav{
+        display: none;
+    }
+
+    .body{
+        gap: 40px;
+    }
+    .body h1{
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .body .input-group{
+        flex-direction: column;
+    }
+
+    .body .container input {
+        width: 400px;
+        height: 56px;
+    }
+}
+
+@media only screen and (max-width:650px){
+    body{
+        padding: 40px 20px;
+    }
+    .header{
+        display: none;
+    }
+    
+    .body{
+        height: 100%;
+        gap: 0;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+    .body .container {
+        width: 100%;
+    }
+    
+    .body .container input , .body .container button {
+        width: 100% !important;
+        height: 56px;
+    }
+
+    footer{
+        padding: 0 10px;
+        justify-content: center;
+    }
+}

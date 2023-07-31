@@ -1,0 +1,209 @@
+﻿@using Conference_Website.Models;
+
+
+@{
+    ViewData["Title"] = "Admin Genel Ayarlar Sayfası";
+    ViewBag.Navigation = "Genel Ayarlar";
+    Layout = "_Admin-Layout";
+}
+
+@section css {
+    <link href="~/css/admin/generalInformation.css" rel="stylesheet" />
+    <link href="~/css/slider.css" rel="stylesheet" />
+}
+
+<section class="sec-1">
+    <h5>Detay</h5>
+    <form action="/admin/Update_Detail" id="Detail" method="post" >
+        <div class="col-1">
+            <input type="text" name="ConferenceName" value="@Detail.ConferenceName" placeholder="Konferans Adı" />
+            <input type="datetime-local" name="StartDate" value="@Detail.StartDate.ToString("yyyy-MM-ddThh:mm")" placeholder="DD/MM/YY HH:MM:SS" />
+            <button type="submit">
+                Güncelle
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </form>
+
+</section>
+
+
+<section class="sec-2">
+    <h5>Mekan Fotoğrafları</h5>
+    <div class="col-1 @(Detail.ImageList.Count>4?"":"direction-row")">
+    
+        <div class="slider">
+            @if(Detail.ImageList.Count>0)
+            {
+                @for(int i=0; i<Detail.ImageList.Count; i++)
+                {
+                    string ImageName = @Detail.ImageList[i];
+                    <div id="@i"  class="image-container  @(i==0?"featured":"")">
+                        <button type="button" id="@ImageName">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                        <img src="~/img/@ImageName" alt="">
+                        
+                    </div>
+                }
+            }
+        </div>
+ 
+    <div class="input-group ">
+        <form id="addImageForm" enctype="multipart/form-data" action="/admin/Add_Image" method="post">
+                <input type="file" name="Image" id="file_image" />
+                <button type="button" id="select-image">
+                    Fotoğraf Seç
+                </button>
+               
+            </form>
+        </div>
+    </div>
+
+</section>
+
+<section class="sec-3">
+   
+    <div class="col-1">
+        <h5>Konuşmacılar</h5>
+        <button id="addSpeaker">
+            <i class="fa-solid fa-plus"></i>
+            <span>Ekle</span>
+        </button>
+    </div>
+    <div class="col-2" id="speakerListDiv">
+        @if (@Detail.Speakers.Count > 0)
+        {
+            foreach (var item in Detail.Speakers)
+            {
+                <div class="speaker-items">
+                    <div>
+                    <img src="~/img/@item.Image" />
+                        <span>@item.NameAndSurname</span>
+                    </div>
+                    <div>
+                        <button  class="speaker-delete-btn"  id="@item.Id">
+                              <i class="fa-regular fa-trash-can"></i>
+                         </button>
+                        <button class="speaker-edit-btn" id="@item.Id" type="button">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                         </button>
+                     </div>
+                </div>
+            }
+           
+           }
+    </div>
+</section>
+
+<section class="sec-4">
+    <h5>Mekan Fotoğrafları</h5>
+    <div class="row-1">
+            <div class="col-1" id="agendaList">
+                @if (Detail.Agenda.Count > 0)
+                {
+                    var agendaList = Detail.Agenda.OrderBy(x => x.StartTime).ToList();
+
+                    for (int i = 0; i < Detail.Agenda.Count; i++)
+                    {
+                        var item = agendaList[i];
+                        <div class="item @(i==0?"first":"")">
+                            <span>@item.StartTime@(!string.IsNullOrEmpty(item.EndTime) && item.EndTime != item.StartTime ? $" - {@item.EndTime}" : "")</span>
+                        <button id="@item.Id" class="buttonAgendaRemove"><i  class="fa-solid fa-trash"></i></button>
+                            <span>@item.Description</span>
+                        </div>
+                    }
+                }
+
+            </div>
+            <form id="agendaAddForm">
+        <div class="col-2">
+            <div class="input-group">
+            <input type="text" name="StartTime" class="agendaInput" placeholder="Başlangıç Saati" />
+                <input type="text" name="EndTime" class="agendaInput" placeholder="Bitiş Saati" />
+            </div>
+            <div class="input-group">
+            <input type="text" name="Description" placeholder="Açıklama" />
+            <button id="" type="submit">
+                Ekle
+                <i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
+        </div>
+        </form>
+
+    </div>
+</section>
+
+<!-----       Speaker List Edit & Add Form       ----->
+
+@*    <form id="addSpeaker_form" enctype="multipart/form-data" class="addSpeaker-form">
+    <div class="row-1">
+        <div class="col-1">
+            <input type="file" id="addSpeakerInputFile" name="Image" />
+            <img src="~/img/camera.png" id="speakerAddImage"/>
+        </div>
+        <button type="submit">
+            <span><i class="fa-solid fa-arrow-up"></i></span>
+            Kaydet
+        </button>
+        <div class="col-2">
+            <button type="button">
+                Kaydet
+            </button>
+            <button id="closeAddSpeakerForm" type="button">
+                        Kapat
+           </button>
+       </div>
+    </div>
+    <div class="row-2">
+        <input type="hidden" name="id" />
+        <input type="text" name="NameAndSurname" placeholder="Ad Soyad" />
+        <textarea name="Description" placeholder="Açıklama"></textarea>
+        <input type="text" name="Career" placeholder="Kariyer" />
+    </div>
+</form>*@
+
+
+
+<!-----      Finish       ----->
+
+
+
+<section class="sec-5">
+    <h5>Adres</h5>
+    <div class="col-1">
+        <div id="map">
+        </div>
+
+        <form id="mapForm">
+            <input type="hidden" id="lat" value="@Detail.Latitude"/>
+            <input type="hidden" id="long" value="@Detail.Longitude" />
+            <div class="textarea" >
+                <div class="textarea-text" data-placeholder="Address detay" id="txtarea-adressDetail" contentEditable="plaintext-only">@Detail.Location</div>
+            </div>
+            <div class="searchAddress">
+            <input type="text" placeholder="Adres ara" id="searchAddress" name="Location" />
+            <select id="adressList">
+              
+            </select>
+            <button type="submit">
+                Güncelle
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            </div>
+        </form>
+
+    </div>
+   
+    </section>
+
+
+
+   @section javascript{
+    <script src="~/js/slider.js"></script>
+    <script src="~/js/admin/generalInformation.js"></script>
+    <script>
+        Admin_initMap();
+    </script>
+   }

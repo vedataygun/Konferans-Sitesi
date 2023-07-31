@@ -1,0 +1,231 @@
+
+
+
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+body {
+    background-color: #121418;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow:hidden;
+    position:relative;
+}
+.header{
+    width: 100%;
+}
+body, html {
+    overflow-x: hidden;
+}
+.header .navbar{
+    background-color:rgba(41, 45, 46, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 70px;
+    height: 80px;
+}
+
+.header .logo{
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+}
+
+.header nav{
+    display: flex;
+}
+.header nav a {
+    color: #f0f2f5;   
+}
+
+.header nav ul {
+    list-style: none;display: flex;
+    gap: 30px;
+}
+
+ 
+
+
+
+.hbgr-menu{
+    display: none;
+    gap: 9px;
+    width: 22px;
+    align-items: end;
+    outline: none;
+    flex-direction: column;
+    border: none;
+    background-color: transparent;
+}
+
+.hbgr-menu span{
+    width: 100%;
+    background-color: #bbbbbb;
+    display: inline-block;
+    height: 1px;
+}
+
+.hbgr-menu span:nth-child(2){
+    width: 50%;
+
+}
+
+
+
+.body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 80px;
+    width: 100%;
+    align-items: center;
+    height: auto;
+}
+
+.body h1{
+    font-weight: bold;
+    font-size: 35px;color: #fff;
+}
+
+.body .container{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.body .container input {
+    width: 400px;
+    height: 64px;
+    background-color: #222222;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #f0f2f5;
+    padding: 0 20px;
+}
+.body .container button{
+    width: 400px;
+    height: 64px;
+    background:linear-gradient(to right ,#01C29A , #85C883 , #E2CE72);
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 20px;
+    display: flex;
+    font-size: 15px;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.body .container .input-group{
+    display: flex;
+    gap: 15px;
+}
+
+.body .container .input-group i {
+    font-size: 25px;
+}
+
+footer{
+    height: 80px;
+    align-items: center;
+    display: flex;
+    padding: 0 70px;
+
+}
+footer span{
+    font-size: 14px;
+    color: #BABABA;
+}
+
+
+@media only screen and (max-width:1023px) {
+
+ 
+    body{
+        padding: 20px 0;
+    }
+
+    
+    .header{
+        background: none;
+        height: initial;
+    }
+    
+    .header .navbar{
+        background-color: transparent;
+        padding: 0 20px;
+        height: initial;
+    }
+    
+    .logo{
+        color: #D5DCDF !important;
+
+    }
+
+    .hbgr-menu{
+        display: flex;
+    }
+
+    .header .navbar nav{
+        display: none;
+    }
+
+    .body{
+        gap: 40px;
+    }
+    .body h1{
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    .body .input-group{
+        flex-direction: column;
+    }
+
+    .body .container input {
+        width: 400px;
+        height: 56px;
+    }
+}
+
+@media only screen and (max-width:650px){
+    body{
+        padding: 20px 0 20px 0;
+    }
+
+    form {
+        width: 100%;
+    }
+    .body{
+        padding: 0 10px;
+    }
+    .body .container {
+        width: 100%;
+    }
+    
+    .body .container input , .body .container button {
+        width: 100% !important;
+        height: 56px;
+    }
+
+    footer{
+        padding: 0 10px;
+        justify-content: center;
+    }
+}

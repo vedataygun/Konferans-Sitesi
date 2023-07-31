@@ -1,0 +1,109 @@
+﻿@using Conference_Website.Models;
+@model List<Participant>;
+
+@{
+    ViewData["Title"] = "Katılımcı Listesi Sayfası";
+    ViewBag.Navigation = "Katılımcılar";
+    Layout = "_Admin-Layout";
+    <meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">
+
+}
+
+@section css{
+    <link href="~/css/admin/participantList.css" rel="stylesheet" />
+}
+
+<div class="container">
+    <div class="sec-1">
+        <div class="col-1">
+            <span>Katılımcılar</span>
+            <span>@Model.Count Katılımcı</span>
+        </div>
+        <div class="col-2">
+            <input type="button" onclick="exportTableToExcel('table','Participants')" value="Export Excel" />
+            <input type="button" onclick="sendCertificaton(this)" value="Sertifika Gönder" />
+        </div>
+    </div>
+    <div class="sec-2">
+
+    <table id="table">
+        <thead>
+            <tr>
+                    <th>ID</th>
+                    <th>Ad Soyad</th>
+                <th>E-Posta</th>
+                <th>Katılım Tarihi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count > 0)
+            {
+                    int i = 1;
+                    foreach(var item in Model)
+                {
+                    <tr>
+                            <td>@i</td>
+                            <td>@item.Name @item.Surname</td>
+                        <td>@item.Email</td>
+                        <td>@item.RegisterDate</td>
+                    </tr>
+                    i++;
+                }
+            }
+        </tbody>
+    </table>
+    </div>
+
+    <script>
+        function exportTableToExcel(tableId,fileName="")
+        {
+            var downloadLink;
+            var dataType="data:application/vnd.ms-excel";
+            var tableSelect = document.getElementById(tableId);
+            var tableHtml = tableSelect.outerHTML.replace(/ /g, '%20')
+            var csvString = 'ı,ü,ü,ğ,ş,#Hashtag,ä,ö';
+            fileName=fileName?fileName+".xls":"excel_data.xls";
+
+            downloadLink=document.createElement("a");
+            document.body.appendChild(downloadLink);
+            if(navigator.msSaveOrOpenBlob){
+                var blob = new Blob(['\uFEFF',tableHtml],{
+                    type: "application/vnd.ms-excel; charset=utf-8;"
+                })
+                navigator.msSaveOrOpenBlob(blob, fileName);
+                
+            }
+            else{
+                downloadLink.href = dataType + ', ' + encodeURIComponent('\uFEFF' + csvString) + tableHtml;
+
+                downloadLink.download=fileName;
+
+                downloadLink.click();
+            }
+        }
+
+        function sendCertificaton(e){
+           console.log(e)
+           e.disabled=true;
+            e.value = "Gönderiliyor..";
+            e.style.opacity="0.7";
+            e.style.cursor="initial";
+
+            $.ajax({
+                type:"Post",
+                data:{},
+                url: "/admin/Send_Certification",
+                success:function(response){
+                    e.disabled = false;
+                    e.value = "Sertifika Gönder";
+                    e.style.opacity = "1";
+                    e.style.cursor = "pointer";
+
+                    getAlert(response.alert);
+
+                }
+            })
+        }
+
+    </script>
+</div>
